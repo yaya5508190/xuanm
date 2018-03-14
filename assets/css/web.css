@@ -1,0 +1,249 @@
+body {
+    font-family: "Microsoft YaHei";
+}
+
+img .center-block {
+    margin: 0 auto;
+    text-align: center;
+}
+
+a {
+    text-decoration: none
+}
+
+.clear {
+    clear: both;
+}
+
+.tel {
+    display: block;
+}
+
+.header {
+    min-height: 100px;
+    padding-top: 25px;
+}
+
+.header .logo {
+    width: 263px;
+    height: 49px;
+    margin: 0 auto;
+}
+
+.header .tel {
+    background: url(/static/images/icon-tel.jpg) no-repeat 0 8px;
+    padding-left: 30px;
+    font-size: 20px;
+    color: #c62c2d;
+    font-weight: bold;
+    width: 180px;
+}
+
+.footer {
+    margin-top: 0.125rem;
+    padding-top: 0.125rem;
+    height: auto !important;
+    background: #424548;
+    display: block;
+    width: 100%;
+}
+
+.footer .container {
+    display: block;
+    background: #424548;
+}
+
+.footer .logo {
+    width: 210px;
+    height: 38px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.footer .logo img {
+    width: 210px;
+    height: 38px;
+}
+
+.footer h4 {
+    height: 40px;
+    line-height: 40px;
+    width: 140px;
+    border-bottom: 2px solid #c21a1f;
+    color: #fff;
+}
+
+.footer .intro {
+    text-align: center;
+    margin-bottom: 0.375rem;
+    font-size: 16px;
+}
+
+.footer p {
+    text-align: left;
+    color: #fff;
+    font-size: 18px;
+}
+
+.copyright {
+    background: #1e2023;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.app-toolbar button {
+    font-size: 16px;
+}
+.app-carousel{
+    object-fit: contain;
+}
+.app-carousel .jumbotron__image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.head3 {
+    color: #c92e30;
+    text-align: center;
+    margin: 0;
+    margin-top: 37px;
+    font-size: 24px;
+}
+
+.head6 {
+    font-size: 14px;
+    color: #c92e30;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 37px;
+}
+
+.marketing .link {
+    min-height: 80px;
+    font-size: 14px;
+}
+
+.marketing .link a {
+    color: #1e2023;
+    margin-right: 15px;
+    line-height: 25px;
+}
+
+.marketing .media {
+    height: 300px !important;
+}
+
+.successing .case-pic-info {
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    background-color: rgba(48, 48, 48, 0.8);
+    opacity: 30%;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+}
+
+.clothing {
+    background: #ea6a5e url(/static/images/bg_clothing.jpg) no-repeat 0 0;
+    margin-top: 60px;
+    min-height: 498px;
+    padding-bottom: 40px;
+}
+
+.introduction_info img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.clothing .iconfont {
+    font-size: 40px;
+    text-align: center;
+    display: block;
+}
+.clothing h3,
+.clothing h6 {
+    color: #fff;
+}
+.clothing h4 {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+.clothing p {
+    font-size: 14px;
+}
+
+.clothing .iconfont {
+    font-size: 40px;
+    text-align: center;
+    display: block;
+}
+.clothing a.box,
+.clothing a.box:visited,
+.clothing a.box:hover,
+.clothing a.box:active {
+    color: #e32f2f;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 265px;
+    padding: 35px 25px 25px 25px;
+    margin-bottom: 20px;
+    background: #fff;
+}
+.clothing a.box:hover {
+    color: #fff;
+    background: #c92e30;
+    height: 265px;
+}
+
+@media only screen and (min-width: 1904px) {
+    .app-toolbar button {
+        margin-left: 100px !important;
+        margin-right: 100px !important;
+    }
+}
+
+@media only screen and (min-width: 1264px) and (max-width: 1904px) {
+    .app-toolbar button {
+        margin-left: 50px !important;
+        margin-right: 50px !important;
+    }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1264px) {
+    .app-toolbar button {
+        margin-left: 25px !important;
+        margin-right: 25px !important;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+    .app-toolbar button {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    .marketing .media {
+        height: 250px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .link {
+        padding: 0 0 0 5px;
+    }
+    .marketing .media {
+        height: 100px !important;
+    }
+}
