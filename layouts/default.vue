@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-container fluid>
+        <v-container fluid style="padding: 0 0 0 0">
             <v-layout row class="header">
                 <v-flex lg10 md9 sm8>
                     <div class="logo"><img src="/images/m-logo.png"></div>
@@ -14,14 +14,13 @@
             <v-toolbar style="background-color: #c62c2d">
                 <v-spacer></v-spacer>
                 <v-toolbar-items class="hidden-xs-only app-toolbar" v-for="item in toolbarItems" :key="item.title" >
-                    <v-btn flat dark>{{item.title}}</v-btn>
+                    <v-btn flat dark :to="item.url" active-class class="title" >{{item.title}}</v-btn>
                 </v-toolbar-items>
                 <v-spacer></v-spacer>
-
                 <v-menu offset-y>
                     <v-toolbar-side-icon slot="activator" class="hidden-sm-and-up" dark></v-toolbar-side-icon>
                     <v-list style="background-color: #c62c2d" dark>
-                        <v-list-tile v-for="item in toolbarItems" :key="item.title" @click="">
+                        <v-list-tile v-for="item in toolbarItems" :key="item.title" :to="item.url" active-class>
                             <v-list-tile-title >{{ item.title }}</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
@@ -75,7 +74,7 @@
           url: '/'
         }, {
           title: '服务项目',
-          url: '/admin'
+          url: '/marketing'
         }, {
           title: '案例展示',
           url: '/admin'

@@ -1,17 +1,17 @@
 <template>
     <div v-resize="onResize">
         <v-carousel class="app-carousel"
-                    :style="{height : windowSize.x/3.21 + 'px'}"
+                    :style="{height : windowSize.x/3.132 + 'px'}"
                     :hide-delimiters="windowSize.x < 800 ? true : false">
             <v-carousel-item v-for="(item,i) in carouselItems"
                              :src="item.src"
                              :key="i"
                              style="width: 100%;height: 100%"></v-carousel-item>
         </v-carousel>
-        <div class="marketing">
+        <div class="marketing app-content">
             <h3 class="head3">服务项目</h3>
             <h6 class="head6">Service Items</h6>
-            <v-layout row wrap>
+            <v-layout row wrap >
                 <v-flex class="lg3 md6 sm6 xs6 pr-1 pl-1 pt-1 pb-1" v-for="(item,i) in marketingItems" :key="i">
                     <v-card>
                         <v-card-media :src="item.img" class="white--text media">
@@ -38,7 +38,7 @@
                 </v-flex>
             </v-layout>
         </div>
-        <div class="successing">
+        <div class="successing app-content">
             <h3 class="head3">成功案例</h3>
             <h6 class="head6">Successful case</h6>
             <v-container fluid grid-list-md>
@@ -65,29 +65,29 @@
         <div class="clothing">
             <h3 class = "head3">服务领域</h3>
             <h6 class = "head6">Service field</h6>
-            <v-layout row wrap style="width: 90%;margin-left: auto;margin-right: auto;">
-                <v-flex class="lg3 md6 xs6 pr-2 pl-2">
+            <v-layout row wrap class="box-container">
+                <v-flex class="lg3 md6 xs6">
                     <a href="#" class="box">
                         <i class="iconfont icon-dichanjianzhu"></i>
                         <h4>商业地产</h4>
                         <p>为地产售楼中心及线下推广活动提供多媒体数字化综合应用解决方案</p>
                     </a>
                 </v-flex>
-                <v-flex class="lg3 md6 xs6 pr-2 pl-2">
+                <v-flex class="lg3 md6 xs6 ">
                     <a href="#" class="box">
                         <i class="iconfont icon-wenhua"></i>
                         <h4>文旅产业</h4>
                         <p>为线下文化旅游产业园提供综合多媒体互动展示配套服务</p>
                     </a>
                 </v-flex>
-                <v-flex class="lg3 md6 xs6 pr-2 pl-2">
+                <v-flex class="lg3 md6 xs6 ">
                     <a href="#" class="box">
                         <i class="iconfont icon-jigou"></i>
                         <h4>企业机构</h4>
                         <p>为企业机构提供形象展示、产品介绍、活动发布等综合数字化解决方案</p>
                     </a>
                 </v-flex>
-                <v-flex class="lg3 md6 xs6 pr-2 pl-2">
+                <v-flex class="lg3 md6 xs6 ">
                     <a href="#" class="box">
                         <i class="iconfont icon-yuanxiao"></i>
                         <h4>教育培训</h4>
@@ -103,8 +103,8 @@
             <h3 class="head3">合作伙伴</h3>
             <h6 class="head6">Service Items</h6>
             <v-layout row wrap>
-                <v-flex lg2 md2 sm2 xs6 v-for="(item,i) in collaborators" :key="i">
-                    <img :src="item.img"/>
+                <v-flex lg2 md2 sm4 xs6 v-for="(item,i) in collaborators" :key="i" class="text-sm-center text-xs-center">
+                    <img :src="item.img" />
                 </v-flex>
             </v-layout>
         </div>
@@ -113,7 +113,6 @@
 
 <script>
   export default {
-    layout: 'index',
     mounted () {
       this.onResize()
     },

@@ -11,12 +11,20 @@ a {
     text-decoration: none
 }
 
+.app-content {
+    width: 70% ;
+    margin-right: auto;
+    margin-left: auto
+}
+
 .clear {
     clear: both;
 }
 
 .tel {
     display: block;
+    width: 200px !important;
+    margin-top: -8px;
 }
 
 .header {
@@ -31,7 +39,7 @@ a {
 }
 
 .header .tel {
-    background: url(/static/images/icon-tel.jpg) no-repeat 0 8px;
+    background: url(/static/images/icon-tel.jpg) no-repeat 0 14px;
     padding-left: 30px;
     font-size: 20px;
     color: #c62c2d;
@@ -196,11 +204,13 @@ a {
     color: #e32f2f;
     text-decoration: none;
     display: block;
-    width: 100%;
+    width: 80%;
     height: 265px;
     padding: 35px 25px 25px 25px;
     margin-bottom: 20px;
     background: #fff;
+    margin-right: auto;
+    margin-left: auto;
 }
 .clothing a.box:hover {
     color: #fff;
@@ -208,34 +218,53 @@ a {
     height: 265px;
 }
 
+.clothing .box-container{
+    width: 80%;margin-left: auto;margin-right: auto;
+}
+
 @media only screen and (min-width: 1904px) {
-    .app-toolbar button {
+    .app-toolbar a {
         margin-left: 100px !important;
         margin-right: 100px !important;
     }
 }
 
 @media only screen and (min-width: 1264px) and (max-width: 1904px) {
-    .app-toolbar button {
+    .app-toolbar a {
         margin-left: 50px !important;
         margin-right: 50px !important;
     }
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1264px) {
-    .app-toolbar button {
+    .app-toolbar a {
         margin-left: 25px !important;
         margin-right: 25px !important;
+    }
+    .app-banner{
+        height: 400px !important;
     }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 960px) {
-    .app-toolbar button {
-        margin-left: 0px !important;
-        margin-right: 0px !important;
+    .app-toolbar a {
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+    }
+    .app-toolbar a div{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
     .marketing .media {
         height: 250px !important;
+    }
+    .app-banner{
+        height: 200px !important;
+    }
+    .app-content {
+        width: 95% ;
+        margin-right: auto;
+        margin-left: auto
     }
 }
 
@@ -245,5 +274,22 @@ a {
     }
     .marketing .media {
         height: 100px !important;
+    }
+    .app-content {
+        width: 95% ;
+        margin-right: auto;
+        margin-left: auto
+    }
+    .clothing a.box,
+    .clothing a.box:visited,
+    .clothing a.box:hover,
+    .clothing a.box:active {
+        width: 90%;
+    }
+    .clothing .box-container{
+        width: 90%;margin-left: auto;margin-right: auto;
+    }
+    .app-banner{
+        height: 200px !important;
     }
 }
