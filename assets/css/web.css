@@ -2,17 +2,12 @@ body {
     font-family: "Microsoft YaHei";
 }
 
-img .center-block {
-    margin: 0 auto;
-    text-align: center;
-}
-
 a {
     text-decoration: none
 }
 
 .app-content {
-    width: 70% ;
+    width: 70%;
     margin-right: auto;
     margin-left: auto
 }
@@ -106,10 +101,12 @@ a {
 .app-toolbar button {
     font-size: 16px;
 }
-.app-carousel{
+
+.app-carousel {
     object-fit: contain;
 }
-.app-carousel .jumbotron__image{
+
+.app-carousel .jumbotron__image {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -179,15 +176,18 @@ a {
     text-align: center;
     display: block;
 }
+
 .clothing h3,
 .clothing h6 {
     color: #fff;
 }
+
 .clothing h4 {
     font-size: 18px;
     font-weight: 500;
     text-align: center;
 }
+
 .clothing p {
     font-size: 14px;
 }
@@ -197,6 +197,7 @@ a {
     text-align: center;
     display: block;
 }
+
 .clothing a.box,
 .clothing a.box:visited,
 .clothing a.box:hover,
@@ -212,14 +213,17 @@ a {
     margin-right: auto;
     margin-left: auto;
 }
+
 .clothing a.box:hover {
     color: #fff;
     background: #c92e30;
     height: 265px;
 }
 
-.clothing .box-container{
-    width: 80%;margin-left: auto;margin-right: auto;
+.clothing .box-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media only screen and (min-width: 1904px) {
@@ -241,7 +245,8 @@ a {
         margin-left: 25px !important;
         margin-right: 25px !important;
     }
-    .app-banner{
+
+    .app-banner {
         height: 400px !important;
     }
 }
@@ -251,18 +256,22 @@ a {
         margin-left: 5px !important;
         margin-right: 5px !important;
     }
-    .app-toolbar a div{
+
+    .app-toolbar a div {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+
     .marketing .media {
         height: 250px !important;
     }
-    .app-banner{
+
+    .app-banner {
         height: 200px !important;
     }
+
     .app-content {
-        width: 95% ;
+        width: 95%;
         margin-right: auto;
         margin-left: auto
     }
@@ -272,24 +281,31 @@ a {
     .link {
         padding: 0 0 0 5px;
     }
+
     .marketing .media {
         height: 100px !important;
     }
+
     .app-content {
-        width: 95% ;
+        width: 95%;
         margin-right: auto;
         margin-left: auto
     }
+
     .clothing a.box,
     .clothing a.box:visited,
     .clothing a.box:hover,
     .clothing a.box:active {
         width: 90%;
     }
-    .clothing .box-container{
-        width: 90%;margin-left: auto;margin-right: auto;
+
+    .clothing .box-container {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
-    .app-banner{
+
+    .app-banner {
         height: 200px !important;
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-container fluid style="padding: 0 0 0 0">
-            <v-layout row class="header">
+            <v-layout row class="header" v-scroll="onScroll">
                 <v-flex lg10 md9 sm8>
                     <div class="logo"><img src="/images/m-logo.png"></div>
                 </v-flex>
@@ -11,7 +11,7 @@
                     </div>
                 </v-flex>
             </v-layout>
-            <v-toolbar style="background-color: #c62c2d">
+            <v-toolbar style="background-color: #c62c2d" :fixed="offsetTop>100">
                 <v-spacer></v-spacer>
                 <v-toolbar-items class="hidden-xs-only app-toolbar" v-for="item in toolbarItems" :key="item.title" >
                     <v-btn flat dark :to="item.url" active-class class="title" >{{item.title}}</v-btn>
@@ -77,19 +77,26 @@
           url: '/marketing'
         }, {
           title: '案例展示',
-          url: '/admin'
+          url: '/piclist'
         }, {
           title: '玄米新闻',
-          url: '/admin'
+          url: '/newlist'
         }, {
           title: '关于我们',
-          url: '/admin'
+          url: '/about'
         }, {
           title: '联系我们',
-          url: '/admin'
+          url: '/contact'
         }
-      ]
-    })
+      ],
+      offsetTop: 0
+    }),
+    methods: {
+      onScroll (e) {
+        console.log(1)
+        this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
+      }
+    }
   }
 </script>
 <style>

@@ -24,7 +24,7 @@
                             </v-container>
                         </v-card-media>
                         <v-card-text class="link">
-                            <a href="/">{{item.title}}</a>
+                            <a>{{item.title}}</a>
                             <a>{{item.title}}</a>
                             <a>{{item.title}}</a>
                             <a>{{item.title}}</a>
@@ -47,7 +47,7 @@
                         <v-card nuxt to="/">
                             <v-card-media
                                     :src="item.img"
-                                    :style="{height : windowSize.x/4 + 'px'}"
+                                    :style="{height : windowSize.x/5 + 'px'}"
                             >
                             </v-card-media>
                             <div class="case-pic-info">{{item.title}}</div>
@@ -113,6 +113,7 @@
 
 <script>
   export default {
+    layout: 'index',
     mounted () {
       this.onResize()
     },

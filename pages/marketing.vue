@@ -98,6 +98,7 @@
 </template>
 <script>
   export default {
+    layout: 'index',
     data: () => ({
       partOneItems: [
         {
