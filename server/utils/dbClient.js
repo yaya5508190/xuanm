@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 
-const XUANM_URI = 'mongodb://172.16.189.187:27017/xuanm'
+const XUANM_URI = process.env.DB_URL || 'mongodb://172.16.189.187:27017/xuanm'
 
 function connect (url) {
   return MongoClient.connect(url).then(client => client.db())
