@@ -15,11 +15,14 @@ module.exports = {
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
-      {rel: 'stylesheet', href: '//at.alicdn.com/t/font_433632_mgxd8yoikla3jtt9.css'},
+      {rel: 'stylesheet', href: '//at.alicdn.com/t/font_433632_mgxd8yoikla3jtt9.css'}
       // {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'}
     ]
   },
-  plugins: ['~/plugins/vuetify.js'],
+  plugins: [
+    '~/plugins/vuetify.js',
+    { src: '~/plugins/awe-dnd.js', ssr: false }
+  ],
   css: [
     '~/assets/style/app.styl',
     '~/assets/css/web.css',
@@ -34,13 +37,14 @@ module.exports = {
   */
   build: {
     vendor: [
-      '~/plugins/vuetify.js'
+      '~/plugins/vuetify.js',
+      '~/plugins/awe-dnd.js'
     ],
     extractCSS: true,
     /*
     ** Run ESLint on save
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',

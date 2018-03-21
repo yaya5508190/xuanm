@@ -4,7 +4,7 @@
                     :style="{height : windowSize.x/3.132 + 'px'}"
                     :hide-delimiters="windowSize.x < 800 ? true : false">
             <v-carousel-item v-for="(item,i) in carouselItems"
-                             :src="item.src"
+                             :src="item.img"
                              :key="i"
                              style="width: 100%;height: 100%"></v-carousel-item>
         </v-carousel>
@@ -112,29 +112,19 @@
 </template>
 
 <script>
+  import axios from '~/plugins/axios'
+
   export default {
     layout: 'index',
+    async asyncData ({ params }) {
+      let carouselData = await axios.get('carousels')
+      return { carouselItems: carouselData.data }
+    },
     mounted () {
-      this.onResize()
+      // this.onResize()
+      this.getCarousels()
     },
     data: () => ({
-      carouselItems: [
-        {
-          src: '/images/banner.jpg'
-        }, {
-          src: '/images/banner3.jpg'
-        }, {
-          src: '/images/banner4.jpg'
-        }, {
-          src: '/images/banner5.jpg'
-        }, {
-          src: '/images/banner6.jpg'
-        }, {
-          src: '/images/banner7.jpg'
-        }, {
-          src: '/images/banner8.jpg'
-        }
-      ],
       marketingItems: [
         {
           title: '互动投影',
@@ -216,6 +206,10 @@
     methods: {
       onResize () {
         this.windowSize = {x: window.innerWidth, y: window.innerHeight}
+      },
+      async getCarousels () {
+        let { data } = await axios.get('carousels')
+        this.carouselItems = data
       }
     }
   }

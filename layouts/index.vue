@@ -26,7 +26,7 @@
                     </v-list>
                 </v-menu>
             </v-toolbar>
-            <nuxt/>
+            <nuxt :style="{ marginTop: offsetTop>100?'60px':'0px' }"/>
             <v-footer height="auto">
                 <v-card
                         flat
@@ -93,7 +93,6 @@
     }),
     methods: {
       onScroll (e) {
-        console.log(1)
         this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
       }
     }

@@ -23,11 +23,13 @@ module.exports = function (dbs) {
   // })
 
   router.get('/users/insert', function (req, res, next) {
-    dbs.xuanm.collection('inserts').insertOne({a: 1}, (err, r) => {
-      if (err) {
-        res.json(err)
-      }
-      res.json({success: 1})
+    dbs.xuanm.eval('getNextSequenceValue("carouselid")').then((id) => {
+      dbs.xuanm.collection('inserts').insertOne({a: id}, (err, r) => {
+        if (err) {
+          res.json(err)
+        }
+        res.json({success: 1})
+      })
     })
   })
   return router

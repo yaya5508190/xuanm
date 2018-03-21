@@ -6,13 +6,17 @@ const api = require('./api')
 const path = require('path')
 
 const app = express()
+const bodyParser = require('body-parser')
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
 // Init Database
 initializeDatabases().then(dbs => {
+  app.set('etag', false)
+  // 配置body解析
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: false }))
   app.set('port', port)
-
   // Import API Routes
   app.use('/api', api(dbs))
   app.use('/static/images', express.static(path.join(__dirname, '/upload/images'), {
@@ -36,7 +40,6 @@ initializeDatabases().then(dbs => {
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
-
   // Listen the server
   app.listen(port, host)
   console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
