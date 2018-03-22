@@ -9,25 +9,26 @@
             </v-btn>
             <v-toolbar-title>新增轮播图</v-toolbar-title>
         </v-toolbar>
-        <v-card-text>
-            <v-form v-model="valid">
+        <v-form v-model="valid" ref="form" lazy-validation>
+            <v-card-text>
                 <v-text-field
                         label="标题描述"
                         v-model="carousel.title"
-                        required
-                ></v-text-field>
-                <!--<v-text-field-->
-                        <!--label="图片"-->
-                        <!--v-model="carousel.img"-->
-                        <!--required-->
-                <!--&gt;</v-text-field>-->
-            </v-form>
-            <dropzone @success="success"/>
-        </v-card-text>
-        <v-card-actions>
-            <v-spacer/>
-            <v-btn color="green darken-1" flat @click="doSave">保存</v-btn>
-        </v-card-actions>
+                        :rules="validRules.titleRules"
+                />
+                <v-text-field
+                        label="图片地址(上传后自动生成)"
+                        v-model="carousel.img"
+                        :rules="validRules.imgRules"
+                        readonly
+                />
+                <dropzone @success="success"/>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer/>
+                <v-btn color="green darken-1" flat @click="doSave">保存</v-btn>
+            </v-card-actions>
+        </v-form>
     </v-card>
 </template>
 <script>
@@ -45,9 +46,11 @@
         this.carousel.filename = response.filename
       },
       doSave () {
-        axios.post('carousels', this.carousel).then(() => {
-          this.$nuxt._router.go(-1)
-        })
+        if (this.$refs.form.validate()) {
+          axios.post('carousels', this.carousel).then(() => {
+            this.$nuxt._router.go(-1)
+          })
+        }
       }
     },
     data: () => ({
@@ -56,6 +59,14 @@
         title: '',
         img: '',
         filename: ''
+      },
+      validRules: {
+        titleRules: [
+          v => !!v || '标题为必填项'
+        ],
+        imgRules: [
+          v => !!v || '必须上传图片'
+        ]
       }
     })
   }

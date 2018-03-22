@@ -45,8 +45,8 @@
         drawer: true,
         items: [
           { icon: 'apps', title: '欢迎页', to: '/admin/dashboard' },
-          { icon: 'bubble_chart', title: '轮播图管理', to: '/admin/carousel' },
-          { icon: 'bubble_chart', title: '文章管理', to: '/admin/topic' }
+          { icon: 'image', title: '轮播图管理', to: '/admin/carousel' },
+          { icon: 'reorder', title: '文章管理', to: '/admin/topic' }
         ],
         title: '玄米数字'
       }
