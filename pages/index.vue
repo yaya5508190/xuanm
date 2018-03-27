@@ -24,15 +24,22 @@
                             </v-container>
                         </v-card-media>
                         <v-card-text class="link">
-                            <a>{{item.title}}</a>
-                            <a>{{item.title}}</a>
-                            <a>{{item.title}}</a>
-                            <a>{{item.title}}</a>
-                            <a>{{item.title}}</a>
+                            <template v-if="i == 0">
+                                <nuxt-link v-for="(topic,j) in topic_2" :to="'/topic/' + topic._id" :key="topic._id">{{topic.title}}</nuxt-link>
+                            </template>
+                            <template v-if="i == 1">
+                                <nuxt-link v-for="(topic,j) in topic_3" :to="'/topic/' + topic._id" :key="topic._id">{{topic.title}}</nuxt-link>
+                            </template>
+                            <template v-if="i == 2">
+                                <nuxt-link v-for="(topic,j) in topic_4" :to="'/topic/' + topic._id" :key="topic._id">{{topic.title}}</nuxt-link>
+                            </template>
+                            <template v-if="i == 3">
+                                <nuxt-link v-for="(topic,j) in topic_5" :to="'/topic/' + topic._id" :key="topic._id">{{topic.title}}</nuxt-link>
+                            </template>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn flat>查看详情</v-btn>
+                            <v-btn flat to="/marketing">查看详情</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -43,18 +50,20 @@
             <h6 class="head6">Successful case</h6>
             <v-container fluid grid-list-md>
                 <v-layout row wrap>
-                    <v-flex class="lg4 md4 sm4 xs4" v-for="(item,i) in successingItems" :key="i">
-                        <v-card nuxt to="/">
-                            <v-card-media
-                                    :src="item.img"
-                                    :style="{height : windowSize.x/5 + 'px'}"
-                            >
-                            </v-card-media>
-                            <div class="case-pic-info">{{item.title}}</div>
-                        </v-card>
-                    </v-flex>
+                    <template v-for="(item,i) in topic_1">
+                        <v-flex class="lg4 md4 sm4 xs4" v-if="i < 9">
+                            <v-card nuxt :to="'/topic/' + item._id">
+                                <v-card-media
+                                        :src="item.coverImg"
+                                        :style="{height : windowSize.x/5 + 'px'}"
+                                >
+                                </v-card-media>
+                                <div class="case-pic-info">{{item.title}}</div>
+                            </v-card>
+                        </v-flex>
+                    </template>
                     <v-flex class="lg12 md12 sm12 xs12" style="text-align: center;font-size: 20px">
-                        <v-btn outline color="grey darken-2" large round>更多案例</v-btn>
+                        <v-btn outline color="grey darken-2" large round to="/piclist">更多案例</v-btn>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -99,12 +108,12 @@
         <div class="introduction_info">
             <img src="/images/contact.jpg"/>
         </div>
-        <div class="collaborators">
+        <div class="collaborators" >
             <h3 class="head3">合作伙伴</h3>
             <h6 class="head6">Service Items</h6>
-            <v-layout row wrap>
+            <v-layout row wrap >
                 <v-flex lg2 md2 sm4 xs6 v-for="(item,i) in collaborators" :key="i" class="text-sm-center text-xs-center">
-                    <img :src="item.img" />
+                    <img :src="item.img" width="150px" />
                 </v-flex>
             </v-layout>
         </div>
@@ -113,16 +122,21 @@
 
 <script>
   import axios from '~/plugins/axios'
+  import _ from 'lodash'
 
   export default {
     layout: 'index',
     async asyncData ({ params }) {
       let carouselData = await axios.get('carousels')
-      return { carouselItems: carouselData.data }
+      let partnerData = await axios.get('partner')
+      let topicsData = await axios.get('topic')
+      return {
+        carouselItems: carouselData.data,
+        collaborators: partnerData.data,
+        topics: topicsData.data
+      }
     },
     mounted () {
-      // this.onResize()
-      this.getCarousels()
     },
     data: () => ({
       marketingItems: [
@@ -144,72 +158,31 @@
           href: ''
         }
       ],
-      successingItems: [
-        {
-          title: '互动投影',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '触控显示',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '影视动画',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '数字展厅',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '互动投影',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '触控显示',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '影视动画',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '数字展厅',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '数字展厅',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }
-      ],
-      collaborators: [
-        {
-          img: '/images/link1.jpg'
-        }, {
-          img: '/images/link2.jpg'
-        }, {
-          img: '/images/link4.jpg'
-        }, {
-          img: '/images/link5.jpg'
-        }, {
-          img: '/images/link6.jpg'
-        }, {
-          img: '/images/link7.jpg'
-        }
-      ],
       windowSize: {
         x: 0,
         y: 0
       }
     }),
+    computed: {
+      topic_1 () {
+        return _.filter(this.topics, {'topicType': 1})
+      },
+      topic_2 () {
+        return _.filter(this.topics, {'topicType': 2})
+      },
+      topic_3 () {
+        return _.filter(this.topics, {'topicType': 3})
+      },
+      topic_4 () {
+        return _.filter(this.topics, {'topicType': 4})
+      },
+      topic_5 () {
+        return _.filter(this.topics, {'topicType': 5})
+      }
+    },
     methods: {
       onResize () {
         this.windowSize = {x: window.innerWidth, y: window.innerHeight}
-      },
-      async getCarousels () {
-        let { data } = await axios.get('carousels')
-        this.carouselItems = data
       }
     }
   }

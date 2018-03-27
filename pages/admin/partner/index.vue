@@ -1,20 +1,20 @@
 <template>
   <div>
       <v-layout row wrap>
-          <v-flex class="lg3 md6 xs6" v-for="carousel in carousels" v-dragging="{ item: carousel, list: carousels, group: 'carousels' }" :key='carousel._id' >
+          <v-flex class="lg3 md6 xs6" v-for="partner in partners" v-dragging="{ item: partner, list: partners, group: 'partner' }" :key='partner._id' >
               <v-card height="350px">
-                  <v-card-media :src="carousel.img" height="200px">
+                  <v-card-media :src="partner.img" height="200px">
                   </v-card-media>
                   <v-card-title primary-title>
                       <div>
-                          <h3 class="headline mb-0">{{carousel.title}}</h3>
-                          <div>{{carousel.createDate}}</div>
+                          <h3 class="headline mb-0">{{partner.title}}</h3>
+                          <div>{{partner.createDate}}</div>
                       </div>
                   </v-card-title>
                   <v-card-actions>
                       <v-spacer></v-spacer>
                       <!--<v-btn flat >编辑</v-btn>-->
-                      <v-btn flat @click="deleteCarousel(carousel)">删除</v-btn>
+                      <v-btn flat @click="deletePartner(partner)">删除</v-btn>
                   </v-card-actions>
               </v-card>
           </v-flex>
@@ -24,7 +24,7 @@
 
                   <!--</v-card-text>-->
               <!--</v-card>-->
-              <v-btn style="height: 350px;margin: 0 0 0 0" flat block to="/admin/carousel/add">
+              <v-btn style="height: 350px;margin: 0 0 0 0" flat block to="/admin/partner/add">
                   <v-icon class="display-4">add_circle_outline</v-icon>
               </v-btn>
           </v-flex>
@@ -46,17 +46,17 @@
   import axios from '~/plugins/axios'
   export default {
     mounted () {
-      this.getCarousels()
+      this.getPartner()
       this.$dragging.$on('dragend', () => {
-        this.setOrder(this.carousels)
-        axios.post('/carousels/sort', this.carousels)
+        this.setOrder(this.partners)
+        axios.post('/partner/sort', this.partners)
       })
     },
     data () {
       return {
         deleteDialog: false,
-        selectedCarousel: '',
-        carousels: []
+        selectedPartner: '',
+        partners: []
       }
     },
     methods: {
@@ -65,24 +65,24 @@
           e.order = i
         })
       },
-      deleteCarousel (carousel) {
+      deletePartner (Partner) {
         this.deleteDialog = true
-        this.selectedCarousel = carousel
+        this.selectedPartner = Partner
       },
       async doDelete () {
         this.deleteDialog = false
-        let { data } = await axios.delete('carousels/' + this.selectedCarousel.id, {
+        let { data } = await axios.delete('partner/' + this.selectedPartner.id, {
           params: {
-            filename: this.selectedCarousel.filename
+            filename: this.selectedPartner.filename
           }
         })
         if (data) {
-          this.getCarousels()
+          this.getPartner()
         }
       },
-      async getCarousels () {
-        let { data } = await axios.get('carousels')
-        this.carousels = data
+      async getPartner () {
+        let { data } = await axios.get('partner')
+        this.partners = data
       }
     }
   }

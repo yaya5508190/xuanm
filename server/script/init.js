@@ -1,9 +1,13 @@
 // 数据库初始化脚本
 db.createCollection('sequences');
 db.sequences.insert({_id:"carouselid",sequence_value:0});
+db.sequences.insert({_id:"partnerid",sequence_value:0});
 
 db.createCollection('carousels');
 db.carousels.insert({_id: 1,carousels:[]});
+
+db.createCollection('partner');
+db.partner.insert({_id: 1,partners:[]});
 
 // 创建获取序列值函数
 db.system.js.insert({

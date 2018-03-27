@@ -22,7 +22,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app fixed clipped-left>
+    <v-toolbar app fixed clipped-left >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>{{title}}</v-toolbar-title>
     </v-toolbar>
@@ -46,6 +46,7 @@
         items: [
           { icon: 'apps', title: '欢迎页', to: '/admin/dashboard' },
           { icon: 'image', title: '轮播图管理', to: '/admin/carousel' },
+          { icon: 'image', title: '合作伙伴管理', to: '/admin/partner' },
           { icon: 'reorder', title: '文章管理', to: '/admin/topic' }
         ],
         title: '玄米数字'

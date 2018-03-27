@@ -14,11 +14,11 @@
             <v-flex xs12>
                 <h2 class="display-1 mb-2 mt-3">新闻资讯:</h2>
             </v-flex>
-            <v-flex xs12 v-if="newsItems.length > 0 ">
+            <v-flex xs12 v-if="topic_6.length > 0 ">
                 <v-card>
                     <v-list>
-                        <template v-for="(item,i) in newsItems" >
-                            <v-list-tile @click="" :key="i" :to="item.id">
+                        <template v-for="(item,i) in topic_6" >
+                            <v-list-tile :to="'/topic/' + item._id" :key="i" v-if="i >= pageSize * ( page - 1) && i < pageSize * page">
                                 <v-list-tile-content>
                                     <v-list-tile-title v-html="item.title" ></v-list-tile-title>
                                 </v-list-tile-content>
@@ -32,35 +32,27 @@
             </v-flex>
         </v-layout>
         <div class="text-xs-center" style="margin-top: 20px">
-            <v-pagination :length="20" v-model="page" :total-visible="5" color="red darken-1"></v-pagination>
+            <v-pagination :length="pageLength" v-model="page" :total-visible="5" color="red darken-1"></v-pagination>
         </div>
     </div>
 </template>
 <script>
+  import axios from '~/plugins/axios'
+  import _ from 'lodash'
+
   export default {
     layout: 'index',
+    async asyncData ({ params }) {
+      let topicsData = await axios.get('topic')
+      return {
+        topics: topicsData.data
+      }
+    },
     mounted () {
       this.onResize()
     },
     data: () => ({
-      newsItems: [
-        {
-          title: '庆祝玄米数字成功上市!',
-          id: '/marketing'
-        },
-        {
-          title: '庆祝玄米数字成功上市！',
-          id: 'marketing'
-        },
-        {
-          title: '庆祝玄米数字成功上市！',
-          id: 'marketing'
-        },
-        {
-          title: '庆祝玄米数字成功上市！',
-          id: 'marketing'
-        }
-      ],
+      pageSize: 10,
       page: 1,
       windowSize: {
         x: 0,
@@ -70,6 +62,14 @@
     methods: {
       onResize () {
         this.windowSize = {x: window.innerWidth, y: window.innerHeight}
+      }
+    },
+    computed: {
+      topic_6 () {
+        return _.filter(this.topics, {'topicType': 6})
+      },
+      pageLength () {
+        return Math.floor(this.topic_6.length % this.pageSize === 0 ? this.topic_6.length / this.pageSize : this.topic_6.length / this.pageSize + 1)
       }
     }
   }

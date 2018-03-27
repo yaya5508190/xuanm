@@ -15,76 +15,56 @@
             <h6 class="head6">Successful case</h6>
             <v-container fluid grid-list-md>
                 <v-layout row wrap>
-                    <v-flex class="lg4 md4 sm4 xs4" v-for="(item,i) in successingItems" :key="i">
-                        <v-card nuxt to="/">
-                            <v-card-media
-                                    :src="item.img"
-                                    :style="{height : windowSize.x/5 + 'px'}"
-                            >
-                            </v-card-media>
-                            <div class="case-pic-info">{{item.title}}</div>
-                        </v-card>
-                    </v-flex>
+                    <template v-for="(item,i) in topic_1">
+                        <v-flex class="lg4 md4 sm4 xs4" v-if="i >= 9 * ( page - 1) && i < 9 * page">
+                            <v-card nuxt :to="'/topic/' + item._id">
+                                <v-card-media
+                                        :src="item.coverImg"
+                                        :style="{height : windowSize.x/5 + 'px'}"
+                                >
+                                </v-card-media>
+                                <div class="case-pic-info">{{item.title}}</div>
+                            </v-card>
+                        </v-flex>
+                    </template>
                 </v-layout>
             </v-container>
         </div>
         <div class="text-xs-center" style="margin-top: 20px">
-            <v-pagination :length="20" v-model="page" :total-visible="5" color="red darken-1"></v-pagination>
+            <v-pagination :length="pageLength" v-model="page" :total-visible="5" color="red darken-1"></v-pagination>
         </div>
     </div>
 </template>
 <script>
+  import axios from '~/plugins/axios'
+  import _ from 'lodash'
+
   export default {
     layout: 'index',
+    async asyncData ({ params }) {
+      let topicsData = await axios.get('topic')
+      return {
+        topics: topicsData.data
+      }
+    },
     mounted () {
       this.onResize()
     },
     data: () => ({
-      successingItems: [
-        {
-          title: '互动投影',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '触控显示',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '影视动画',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '数字展厅',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '互动投影',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '触控显示',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '影视动画',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '数字展厅',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }, {
-          title: '数字展厅',
-          img: '/images/m2_01.jpg',
-          href: ''
-        }
-      ],
       page: 1,
       windowSize: {
         x: 0,
         y: 0
       }
     }),
+    computed: {
+      topic_1 () {
+        return _.filter(this.topics, {'topicType': 1})
+      },
+      pageLength () {
+        return Math.floor(this.topic_1.length % 9 === 0 ? this.topic_1.length / 9 : this.topic_1.length / 9 + 1)
+      }
+    },
     methods: {
       onResize () {
         this.windowSize = {x: window.innerWidth, y: window.innerHeight}

@@ -5,13 +5,13 @@ const path = require('path')
 const uuid = require('node-uuid')
 
 module.exports = function (dbs) {
-  router.post('/carousels', function (req, res, next) {
+  router.post('/partner', function (req, res, next) {
     const carousel = req.body
-    dbs.xuanm.eval('getNextSequenceValue("carouselid")').then((id) => {
+    dbs.xuanm.eval('getNextSequenceValue("partnerid")').then((id) => {
       carousel.id = uuid.v1()
       carousel.order = id
       carousel.createDate = moment().format('YYYY-MM-DD hh:mm:ss')
-      dbs.xuanm.collection('carousels').updateOne({_id: 1}, {$push: {carousels: carousel}}, (err, r) => {
+      dbs.xuanm.collection('partner').updateOne({_id: 1}, {$push: {partners: carousel}}, (err, r) => {
         if (err) {
           res.json(err)
         }
@@ -19,21 +19,21 @@ module.exports = function (dbs) {
       })
     })
   })
-  router.get('/carousels', function (req, res, next) {
-    dbs.xuanm.collection('carousels').findOne({_id: 1}, (err, r) => {
+  router.get('/partner', function (req, res, next) {
+    dbs.xuanm.collection('partner').findOne({_id: 1}, (err, r) => {
       if (err) {
         res.json(err)
       }
-      res.json(r.carousels)
+      res.json(r.partners)
     })
   })
-  router.delete('/carousels/:id', function (req, res, next) {
+  router.delete('/partner/:id', function (req, res, next) {
     try {
       fs.unlinkSync(path.resolve('server/upload/images/' + req.query.filename))
     } catch (err) {
       console.error(err)
     }
-    dbs.xuanm.collection('carousels').updateOne({_id: 1}, {$pull: {'carousels': {'id': req.params.id}}}, (err, r) => {
+    dbs.xuanm.collection('partner').updateOne({_id: 1}, {$pull: {'partners': {'id': req.params.id}}}, (err, r) => {
       if (err) {
         res.json(err)
       }
@@ -41,9 +41,9 @@ module.exports = function (dbs) {
     })
   })
 
-  router.post('/carousels/sort', function (req, res, next) {
-    const carousels = req.body
-    dbs.xuanm.collection('carousels').updateOne({_id: 1}, {$set: {carousels: carousels}}, (err, r) => {
+  router.post('/partner/sort', function (req, res, next) {
+    const partner = req.body
+    dbs.xuanm.collection('partner').updateOne({_id: 1}, {$set: {partners: partner}}, (err, r) => {
       if (err) {
         res.json(err)
       }

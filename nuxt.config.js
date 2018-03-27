@@ -1,4 +1,6 @@
+const webpack = require('webpack')
 module.exports = {
+  cache: false,
   /*
   ** Headers of the page
   */
@@ -21,12 +23,16 @@ module.exports = {
   },
   plugins: [
     '~/plugins/vuetify.js',
-    { src: '~/plugins/awe-dnd.js', ssr: false }
+    { src: '~/plugins/awe-dnd.js', ssr: false },
+    { src: '~/plugins/vue-quill-editor.js', ssr: false }
   ],
   css: [
     '~/assets/style/app.styl',
     '~/assets/css/web.css',
-    'material-design-icons-iconfont/dist/fonts/material-icons.css'
+    'material-design-icons-iconfont/dist/fonts/material-icons.css',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
   ],
   /*
   ** Customize the progress bar color
@@ -38,7 +44,14 @@ module.exports = {
   build: {
     vendor: [
       '~/plugins/vuetify.js',
-      '~/plugins/awe-dnd.js'
+      '~/plugins/awe-dnd.js',
+      'lodash'
+    ],
+    plugins: [
+      new webpack.ProvidePlugin({
+        'window.Quill': 'quill/dist/quill.js',
+        'Quill': 'quill/dist/quill.js'
+      })
     ],
     extractCSS: true,
     /*

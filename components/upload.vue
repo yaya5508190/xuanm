@@ -1,5 +1,7 @@
 <template>
-    <dropzone id='upload' ref="el" :options="options" :destroyDropzone="true"></dropzone>
+    <div class="customDropZone">
+        <dropzone id='upload' ref="el" :options="options" :destroyDropzone="true"></dropzone>
+    </div>
 </template>
 <script>
   import Dropzone from 'nuxt-dropzone'
@@ -11,7 +13,20 @@
       Dropzone
     },
     name: 'customDropZone',
-    props: ['url'],
+    props: ['value'],
+    mounted () {
+      // console.log(this.$refs.el)
+      if (this.value) {
+        const el = this.$refs.el
+        const file = {name: this.value, size: 0}
+        el.manuallyAddFile(file, this.value)
+        el.getFilesWithStatus()[0]._removeLink.onclick = () => {
+          if (file.name) {
+            this.$emit('input', '')
+          }
+        }
+      }
+    },
     data () {
       const vm = this
       return {
@@ -30,6 +45,7 @@
             file._removeLink.onclick = () => {
               if (file.xhr) {
                 const filename = JSON.parse(file.xhr.response).filename
+                vm.$emit('input', '')
                 axios.delete('upload', {
                   params: {
                     filename: filename
@@ -42,23 +58,13 @@
               file.previewElement.classList.add('dz-success')
             }
           }
-          // removedfile (file) {
-          //   console.log(file)
-          //   if (file.xhr) {
-          //     const filename = JSON.parse(file.xhr.response).filename
-          //     axios.delete('upload', {
-          //       params: {
-          //         filename: filename
-          //       }
-          //     })
-          //   }
-          //   if (file.previewElement != null && file.previewElement.parentNode != null) {
-          //     file.previewElement.parentNode.removeChild(file.previewElement)
-          //   }
-          //   return this._updateMaxFilesReachedClass()
-          // }
         }
       }
     }
   }
 </script>
+<style type="text/css">
+    .dropzone .dz-preview .dz-image {
+        z-index: 1;
+    }
+</style>

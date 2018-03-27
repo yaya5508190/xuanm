@@ -7,22 +7,22 @@
             <v-btn icon @click.native="$nuxt._router.go(-1)">
                 <v-icon>chevron_left</v-icon>
             </v-btn>
-            <v-toolbar-title>新增轮播图</v-toolbar-title>
+            <v-toolbar-title>新增合作伙伴</v-toolbar-title>
         </v-toolbar>
         <v-form v-model="valid" ref="form" lazy-validation>
             <v-card-text>
                 <v-text-field
                         label="标题描述"
-                        v-model="carousel.title"
+                        v-model="partner.title"
                         :rules="validRules.titleRules"
                 />
                 <v-text-field
                         label="图片地址(上传后自动生成)"
-                        v-model="carousel.img"
+                        v-model="partner.img"
                         :rules="validRules.imgRules"
                         readonly
                 />
-                <dropzone @success="success" v-model="carousel.img"/>
+                <dropzone @success="success" v-model="partner.img"/>
             </v-card-text>
             <v-card-actions>
                 <v-spacer/>
@@ -41,13 +41,13 @@
     },
     methods: {
       success (file, response) {
-        this.carousel.img = response.url
-        this.carousel.filename = response.filename
+        this.partner.img = response.url
+        this.partner.filename = response.filename
       },
       doSave () {
         if (this.$refs.form.validate()) {
           this.submitStatus = true
-          axios.post('carousels', this.carousel).then(() => {
+          axios.post('partner', this.partner).then(() => {
             this.submitStatus = false
             this.$nuxt._router.go(-1)
           })
@@ -57,7 +57,7 @@
     data: () => ({
       valid: false,
       submitStatus: false,
-      carousel: {
+      partner: {
         title: '',
         img: '',
         filename: ''
