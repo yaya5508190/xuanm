@@ -2,6 +2,7 @@ import express from 'express'
 import {Nuxt, Builder} from 'nuxt'
 
 const initializeDatabases = require('./utils/dbClient.js')
+const session = require('express-session')
 const api = require('./api')
 const path = require('path')
 
@@ -16,14 +17,47 @@ initializeDatabases().then(dbs => {
   // 配置body解析
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: false }))
+  // Sessions 来创建 req.session
+  app.use(session({
+    secret: 'iwoqpwoeiqpqpqs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
+  }))
   app.set('port', port)
-  // Import API Routes
-  app.use('/api', api(dbs))
   app.use('/static/images', express.static(path.join(__dirname, '/upload/images'), {
     setHeaders: function (res, path, stat) {
       res.set('Content-Type', 'image/png')
     }
   }))
+  app.use(function (req, res, next) {
+    if (!req.session.authUser &&
+        req.path.indexOf('/api') === 0 &&
+        req.path !== '/api/login' &&
+        req.path !== '/api/logout' &&
+        req.method !== 'GET') {
+      res.status(403).json({ error: '禁止访问' })
+    } else {
+      next()
+    }
+  })
+  // Import API Routes
+  app.use('/api', api(dbs))
+
+  // 发起 POST /api/login 请求完成用户登录，并添加该用户到 req.session.authUser
+  app.post('/api/login', function (req, res) {
+    if (req.body.username === 'superadmin' && req.body.password === 'qwma-pydt-q6vi') {
+      req.session.authUser = { username: 'superadmin' }
+      return res.json({ username: 'superadmin' })
+    }
+    res.status(401).json({ error: '用户名密码错误' })
+  })
+
+  // 发起 POST /api/logout 请求注销当前用户，并从 req.session 中移除
+  app.post('/api/logout', function (req, res) {
+    delete req.session.authUser
+    res.json({ ok: true })
+  })
 
   // Import and Set Nuxt.js options
   let config = require('../nuxt.config.js')

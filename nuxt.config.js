@@ -24,7 +24,8 @@ module.exports = {
   plugins: [
     '~/plugins/vuetify.js',
     { src: '~/plugins/awe-dnd.js', ssr: false },
-    { src: '~/plugins/vue-quill-editor.js', ssr: false }
+    { src: '~/plugins/vue-quill-editor.js', ssr: false },
+    { src: '~/plugins/particles.js', ssr: false }
   ],
   css: [
     '~/assets/style/app.styl',

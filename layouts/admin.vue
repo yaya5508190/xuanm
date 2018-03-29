@@ -25,6 +25,8 @@
     <v-toolbar app fixed clipped-left >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>{{title}}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn flat @click="logout">登出</v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -49,7 +51,18 @@
           { icon: 'image', title: '合作伙伴管理', to: '/admin/partner' },
           { icon: 'reorder', title: '文章管理', to: '/admin/topic' }
         ],
-        title: '玄米数字'
+        title: '玄米数字',
+        error: ''
+      }
+    },
+    methods: {
+      async logout () {
+        try {
+          await this.$store.dispatch('logout')
+          this.$nuxt._router.push('/admin/login')
+        } catch (e) {
+          this.error = e.message
+        }
       }
     }
   }
