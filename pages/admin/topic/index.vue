@@ -89,7 +89,7 @@
     </div>
 </template>
 <script>
-  import axios from '~/plugins/axios'
+  import axios from 'axios'
 
   export default {
     mounted () {

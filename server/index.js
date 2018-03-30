@@ -3,6 +3,7 @@ import {Nuxt, Builder} from 'nuxt'
 
 const initializeDatabases = require('./utils/dbClient.js')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const api = require('./api')
 const path = require('path')
 
@@ -19,10 +20,15 @@ initializeDatabases().then(dbs => {
   app.use(bodyParser.urlencoded({ extended: false }))
   // Sessions 来创建 req.session
   app.use(session({
-    secret: 'iwoqpwoeiqpqpqs',
+    secret: 'qwma-pydt-q6vi',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 20 * 60 * 1000 },
+    rolling: true,
+    store: new MongoStore({
+      db: dbs.xuanm,
+      ttl: 30 * 60
+    })
   }))
   app.set('port', port)
   app.use('/static/images', express.static(path.join(__dirname, '/upload/images'), {

@@ -6,7 +6,7 @@
 <script>
   import Dropzone from 'nuxt-dropzone'
   import 'nuxt-dropzone/dropzone.css'
-  import axios from '~/plugins/axios'
+  import axios from 'axios'
 
   export default {
     components: {

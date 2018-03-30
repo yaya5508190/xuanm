@@ -97,7 +97,7 @@
     </div>
 </template>
 <script>
-  import axios from '~/plugins/axios'
+  import axios from 'axios'
   import _ from 'lodash'
 
   export default {

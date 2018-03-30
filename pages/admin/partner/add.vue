@@ -33,7 +33,7 @@
 </template>
 <script>
   import Dropzone from '~/components/upload'
-  import axios from '~/plugins/axios'
+  import axios from 'axios'
 
   export default {
     components: {
