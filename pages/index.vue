@@ -23,7 +23,7 @@
                                 </v-layout>
                             </v-container>
                         </v-card-media>
-                        <v-card-text class="link">
+                        <v-card-text class="link" style="height: 120px">
                             <template v-if="i == 0">
                                 <nuxt-link v-for="(topic,j) in topic_2" :to="'/topic/' + topic._id" :key="topic._id">{{topic.title}}</nuxt-link>
                             </template>
@@ -165,7 +165,11 @@
     }),
     computed: {
       topic_1 () {
-        return _.filter(this.topics, {'topicType': 1})
+        let successes = _.filter(this.topics, {'topicType': 1})
+        successes = _.reverse(_.sortBy(successes, function (success) {
+          return new Date(success.createDate)
+        }))
+        return successes
       },
       topic_2 () {
         return _.filter(this.topics, {'topicType': 2})
