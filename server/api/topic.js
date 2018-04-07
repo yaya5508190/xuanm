@@ -55,7 +55,7 @@ module.exports = function (dbs) {
 
   router.post('/topic', function (req, res, next) {
     const topic = req.body
-    topic.createDate = moment().format('YYYY-MM-DD hh:mm:ss')
+    topic.createDate = moment().format('YYYY-MM-DD HH:mm:ss')
     dbs.xuanm.collection('topics').insertOne(topic, (err, r) => {
       if (err) {
         res.json(err)

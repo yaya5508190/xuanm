@@ -10,7 +10,7 @@ module.exports = function (dbs) {
     dbs.xuanm.eval('getNextSequenceValue("carouselid")').then((id) => {
       carousel.id = uuid.v1()
       carousel.order = id
-      carousel.createDate = moment().format('YYYY-MM-DD hh:mm:ss')
+      carousel.createDate = moment().format('YYYY-MM-DD HH:mm:ss')
       dbs.xuanm.collection('carousels').updateOne({_id: 1}, {$push: {carousels: carousel}}, (err, r) => {
         if (err) {
           res.json(err)
