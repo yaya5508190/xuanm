@@ -59,7 +59,11 @@
     }),
     computed: {
       topic_1 () {
-        return _.filter(this.topics, {'topicType': 1})
+        let successes = _.filter(this.topics, {'topicType': 1})
+        successes = _.reverse(_.sortBy(successes, function (success) {
+          return new Date(success.createDate)
+        }))
+        return successes
       },
       pageLength () {
         return Math.floor(this.topic_1.length % 9 === 0 ? this.topic_1.length / 9 : this.topic_1.length / 9 + 1)
