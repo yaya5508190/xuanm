@@ -2,14 +2,25 @@
     <v-app>
         <v-container fluid style="padding: 0 0 0 0">
             <v-layout row class="header" v-scroll="onScroll">
-                <v-flex lg10 md9 sm8>
+                <v-flex lg12 md12 sm12>
                     <div class="logo"><img src="/images/m-logo.png"></div>
                 </v-flex>
-                <v-flex lg2 md3 sm4 hidden-xs-only>
+                <!--<v-flex lg2 md3 sm5 hidden-xs-only>-->
+                    <!--<div style="float: left;">-->
+                        <!--<v-icon style="color: #c62c2d" large>phone</v-icon>-->
+                    <!--</div>-->
+                    <!--<div class="tel">-->
+                        <!--<span class="number">180-5199-0220<br/>180-2013-3922</span>-->
+                    <!--</div>-->
+                <!--</v-flex>-->
+                <div class="phone">
+                    <div style="float: left;">
+                        <v-icon style="color: #c62c2d;font-size: 45px">phone</v-icon>
+                    </div>
                     <div class="tel">
                         <span class="number">180-5199-0220<br/>180-2013-3922</span>
                     </div>
-                </v-flex>
+                </div>
             </v-layout>
             <v-toolbar style="background-color: #c62c2d" :fixed="offsetTop>100">
                 <v-spacer></v-spacer>
@@ -68,6 +79,7 @@
 <script>
   export default {
     data: () => ({
+      lorem: `Lorem`,
       toolbarItems: [
         {
           title: '首页',

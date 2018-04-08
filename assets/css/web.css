@@ -34,14 +34,16 @@ a {
 }
 
 .header .tel {
-    background: url(/static/images/icon-tel.jpg) no-repeat 0 14px;
-    padding-left: 30px;
+    /*background: url(/static/images/icon-tel.jpg) no-repeat 0 14px;*/
     font-size: 20px;
     color: #c62c2d;
     font-weight: bold;
     width: 180px;
 }
-
+.header .phone {
+    position: absolute;
+    right: 20px;
+}
 .footer {
     margin-top: 0.125rem;
     padding-top: 0.125rem;
@@ -252,6 +254,9 @@ a {
 }
 
 @media only screen and (min-width: 600px) and (max-width: 960px) {
+    .header .phone {
+        display: none;
+    }
     .app-toolbar a {
         margin-left: 5px !important;
         margin-right: 5px !important;
@@ -278,6 +283,9 @@ a {
 }
 
 @media only screen and (max-width: 600px) {
+    .header .phone {
+        display: none;
+    }
     .link {
         padding: 0 0 0 5px;
     }
