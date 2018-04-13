@@ -17,7 +17,7 @@
                 <v-layout row wrap>
                     <template v-for="(item,i) in topic_1">
                         <v-flex class="lg4 md4 sm4 xs4" v-if="i >= 9 * ( page - 1) && i < 9 * page">
-                            <v-card nuxt :to="'/topic/' + item._id">
+                            <v-card class="scaleImage" nuxt :to="'/topic/' + item._id">
                                 <v-card-media
                                         :src="item.coverImg"
                                         :style="{height : windowSize.x/5 + 'px'}"

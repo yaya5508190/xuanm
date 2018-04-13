@@ -228,6 +228,13 @@ a {
     margin-right: auto;
 }
 
+.scaleImage:hover .card__media__background{
+    transform: scale(1.1);
+    transition: all 0.5s ease 0s;
+    -webkit-transform: scale(1.1);
+    -webkit-transform: all 0.5s ease 0s;
+}
+
 @media only screen and (min-width: 1904px) {
     .app-toolbar a {
         margin-left: 100px !important;
@@ -272,7 +279,7 @@ a {
     }
 
     .app-banner {
-        height: 200px !important;
+        height: 280px !important;
     }
 
     .app-content {
