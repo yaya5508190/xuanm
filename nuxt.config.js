@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 module.exports = {
-  cache: false,
+  cache: true,
   /*
   ** Headers of the page
   */

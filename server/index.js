@@ -6,6 +6,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const api = require('./api')
 const path = require('path')
+const moment = require('moment')
 
 const app = express()
 const bodyParser = require('body-parser')
@@ -37,6 +38,7 @@ initializeDatabases().then(dbs => {
     }
   }))
   app.use(function (req, res, next) {
+    console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')} -- [${req.headers['x-forwarded-for'] || req.connection.remoteAddress}]: ${req.path}`)
     if (!req.session.authUser &&
         req.path.indexOf('/api') === 0 &&
         req.path !== '/api/login' &&
