@@ -6,7 +6,7 @@ function connect (url) {
   return MongoClient.connect(url).then(client => client.db())
 }
 
-module.exports = async function () {
+export default async function () {
   let databases = await Promise.all([connect(XUANM_URI)])
 
   return {

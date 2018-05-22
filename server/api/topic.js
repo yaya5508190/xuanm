@@ -8,7 +8,7 @@ const dict = require('../utils/dict')
 // const fs = require('fs')
 // const path = require('path')
 
-module.exports = function (dbs) {
+export default function (dbs) {
   router.get('/topic', function (req, res, next) {
     const topic = req.body.topic || {}
     const paging = req.body.paging

@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const uuid = require('node-uuid')
 
-module.exports = function (dbs) {
+export default function (dbs) {
   router.post('/partner', function (req, res, next) {
     const carousel = req.body
     dbs.xuanm.eval('getNextSequenceValue("partnerid")').then((id) => {

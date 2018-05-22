@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: [
     '~/plugins/vuetify.js',
-    '~/plugins/axios',
+    '~/plugins/intercept',
     { src: '~/plugins/awe-dnd.js', ssr: false },
     { src: '~/plugins/vue-quill-editor.js', ssr: false },
     { src: '~/plugins/particles.js', ssr: false }

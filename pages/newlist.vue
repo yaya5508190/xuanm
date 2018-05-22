@@ -37,7 +37,7 @@
     </div>
 </template>
 <script>
-  import axios from 'axios'
+  import axios from '~/plugins/axios'
   import _ from 'lodash'
 
   export default {

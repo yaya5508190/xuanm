@@ -1,11 +1,13 @@
-const upload = require('./upload')
-const carousels = require('./carousels')
-const dict = require('./dict')
-const topic = require('./topic')
-const partner = require('./partner')
-const router = require('express').Router()
+import upload from './upload'
+import carousels from './carousels'
+import dict from './dict'
+import topic from './topic'
+import partner from './partner'
+import {Router} from 'express'
 
-module.exports = function (dbs) {
+const router = Router()
+
+export default function (dbs) {
   router.use(upload(dbs))
   router.use((carousels(dbs)))
   router.use((dict(dbs)))

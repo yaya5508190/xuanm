@@ -3,7 +3,7 @@ const upload = require('multer')({ dest: 'server/upload/images/' })
 const fs = require('fs')
 const path = require('path')
 
-module.exports = function (dbs) {
+export default function (dbs) {
   router.post('/upload', upload.single('image'), function (req, res, next) {
     res.json({
       'url': '/static/images/' + req.file.filename,

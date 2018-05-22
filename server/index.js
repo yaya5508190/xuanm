@@ -1,17 +1,17 @@
 import express from 'express'
 import {Nuxt, Builder} from 'nuxt'
-
-const initializeDatabases = require('./utils/dbClient.js')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
-const api = require('./api')
-const path = require('path')
-const moment = require('moment')
+import initializeDatabases from './utils/dbClient.js'
+import session from 'express-session'
+import connectMongo from 'connect-mongo'
+import api from './api'
+import path from 'path'
+import moment from 'moment'
 
 const app = express()
 const bodyParser = require('body-parser')
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
+const MongoStore = connectMongo(session)
 
 // Init Database
 initializeDatabases().then(dbs => {

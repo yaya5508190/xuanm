@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-  import axios from 'axios'
+  import axios from '~/plugins/axios'
   export default {
     mounted () {
       this.getPartner()
