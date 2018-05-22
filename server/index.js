@@ -37,6 +37,13 @@ initializeDatabases().then(dbs => {
       res.set('Content-Type', 'image/png')
     }
   }))
+
+  app.use('/robots.txt', express.static(path.join(__dirname, '/robots.txt'), {
+    setHeaders: function (res, path, stat) {
+      res.set('Content-Type', 'text/plain; charset=utf-8')
+    }
+  }))
+
   app.use(function (req, res, next) {
     console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')} -- [${req.headers['x-forwarded-for'] || req.connection.remoteAddress}]: ${req.path}`)
     if (!req.session.authUser &&
