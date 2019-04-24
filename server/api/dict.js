@@ -1,5 +1,7 @@
-const dict = require('../utils/dict')
-const router = require('express').Router()
+import dict from '../utils/dict'
+import {Router} from 'express'
+
+const router = Router()
 
 export default function () {
   router.get('/dict/:key', function (req, res, next) {

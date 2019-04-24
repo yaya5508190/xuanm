@@ -1,8 +1,10 @@
-const router = require('express').Router()
-const moment = require('moment')
-const fs = require('fs')
-const path = require('path')
-const uuid = require('node-uuid')
+import {Router} from 'express'
+import moment from 'moment'
+import fs from 'fs'
+import path from 'path'
+import uuid from 'node-uuid'
+
+const router = Router()
 
 export default function (dbs) {
   router.post('/carousels', function (req, res, next) {

@@ -3,7 +3,6 @@ import axios from './axios'
 let isInit = false
 export default ({ app, store, redirect }) => {
   if (!isInit) {
-    console.log('增加拦截')
     isInit = true
     axios.interceptors.response.use((response) => {
       return response

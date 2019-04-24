@@ -1,12 +1,10 @@
-const router = require('express').Router()
-const mongo = require('mongodb')
-const moment = require('moment')
-const _ = require('lodash')
-const dict = require('../utils/dict')
+import {Router} from 'express'
+import mongo from 'mongodb'
+import moment from 'moment'
+import _ from 'lodash'
+import dict from '../utils/dict'
 
-// const moment = require('moment')
-// const fs = require('fs')
-// const path = require('path')
+const router = Router()
 
 export default function (dbs) {
   router.get('/topic', function (req, res, next) {

@@ -1,4 +1,4 @@
-const MongoClient = require('mongodb').MongoClient
+import { MongoClient } from 'mongodb'
 
 const XUANM_URI = process.env.DB_URL || 'mongodb://172.16.189.187:27017/xuanm'
 

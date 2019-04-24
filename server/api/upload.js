@@ -1,7 +1,10 @@
-const router = require('express').Router()
-const upload = require('multer')({ dest: 'server/upload/images/' })
-const fs = require('fs')
-const path = require('path')
+import {Router} from 'express'
+import multer from 'multer'
+import fs from 'fs'
+import path from 'path'
+
+const router = Router()
+const upload = multer({ dest: 'server/upload/images/' })
 
 export default function (dbs) {
   router.post('/upload', upload.single('image'), function (req, res, next) {

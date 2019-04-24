@@ -69,7 +69,7 @@
                         </v-layout>
                     </v-card-text>
                     <v-card-text class="white--text copyright">
-                        &copy;2018 — <strong>XUANM All Rights Reserved 苏ICP备17053041号</strong>
+                        &copy;2018 — <strong>XUANM All Rights Reserved <a href="http://www.miitbeian.gov.cn" target="_blank">苏ICP备17053041号</a></strong>
                     </v-card-text>
                 </v-card>
             </v-footer>
